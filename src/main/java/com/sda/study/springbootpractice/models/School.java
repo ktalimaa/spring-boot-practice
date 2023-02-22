@@ -14,7 +14,14 @@ import lombok.Data;
 @Data
 public class School {
 
+    // this id is like primary key
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    private String name;
+    private String address;
+    private String phone;
+
+
 }

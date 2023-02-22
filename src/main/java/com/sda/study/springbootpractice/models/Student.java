@@ -1,10 +1,9 @@
 package com.sda.study.springbootpractice.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * Student model
@@ -17,4 +16,17 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    private String name;
+    private int age;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+    private String email;
+    private float grade;
+
+    // one student can take multiple courses
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Course> courses;
+
+
 }

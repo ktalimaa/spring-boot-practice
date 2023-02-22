@@ -1,10 +1,10 @@
 package com.sda.study.springbootpractice.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 
 /**
  * Course model
@@ -17,4 +17,15 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    private String name;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate startDate;
+    private int durationInDays;
+
+    // when using OneToMany CascadeType.ALL
+    @OneToOne(cascade = CascadeType.MERGE)
+    private School school;
+
+
 }

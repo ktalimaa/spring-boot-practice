@@ -1,10 +1,10 @@
 package com.sda.study.springbootpractice.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.engine.internal.Cascade;
+
+import java.util.List;
 
 /**
  * Teacher model
@@ -16,5 +16,15 @@ public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    private String name;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
+    private String email;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Course> specializedCourses;
+
 
 }
