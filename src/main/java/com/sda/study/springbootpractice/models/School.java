@@ -5,14 +5,19 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import java.io.Serializable;
 
 /**
  * School model
  */
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
-public class School {
+public class School extends Auditable<String> implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     // this id is like primary key
     @Id
