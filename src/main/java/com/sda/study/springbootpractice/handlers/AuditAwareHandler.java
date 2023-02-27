@@ -9,6 +9,8 @@ import java.util.Optional;
  * Custom handler to implement AuditAware
  *
  */
+
+// Handler is not a component, but it is more like bean
 public class AuditAwareHandler implements AuditorAware<String> {
     @Override
     public Optional<String> getCurrentAuditor() {
