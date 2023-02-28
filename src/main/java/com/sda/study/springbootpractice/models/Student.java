@@ -28,7 +28,7 @@ public class Student extends Auditable<String> implements Serializable {
     private float grade;
 
     // one student can take multiple courses
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.MERGE)
     private List<Course> courses;
 
     private boolean isActive;

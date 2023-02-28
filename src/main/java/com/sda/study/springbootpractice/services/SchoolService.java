@@ -1,5 +1,6 @@
 package com.sda.study.springbootpractice.services;
 
+import com.sda.study.springbootpractice.exceptions.CourseNotFoundException;
 import com.sda.study.springbootpractice.exceptions.SchoolNotFoundException;
 import com.sda.study.springbootpractice.models.School;
 
@@ -8,8 +9,6 @@ import java.util.List;
 /**
  * To handle all School related operations
  */
-
-
 public interface SchoolService {
 
     //    CRUD - create, read, update, delete -> another feature is restore
@@ -21,8 +20,6 @@ public interface SchoolService {
      */
     void createSchool(School school);
 
-    // all three find represents the read
-
     /**
      * To find a school by ID
      *
@@ -32,7 +29,7 @@ public interface SchoolService {
     School findSchoolById(Long id) throws SchoolNotFoundException;
 
     /**
-     * To find school by name
+     * To find a school by name
      *
      * @param name School name
      * @return School
@@ -42,7 +39,7 @@ public interface SchoolService {
     /**
      * To find all schools
      *
-     * @return list of School
+     * @return a list of School
      */
     List<School> findAllSchools();
 
@@ -58,14 +55,12 @@ public interface SchoolService {
      *
      * @param id School ID
      */
-    void deleteSchoolById(Long id) throws SchoolNotFoundException;
+    void deleteSchoolById(Long id) throws SchoolNotFoundException, CourseNotFoundException;
 
     /**
      * To restore a School by ID
      *
      * @param id School ID
      */
-    void restoreSchoolById(Long id) throws SchoolNotFoundException;
-
-
+    void restoreSchoolById(Long id) throws SchoolNotFoundException, CourseNotFoundException;
 }

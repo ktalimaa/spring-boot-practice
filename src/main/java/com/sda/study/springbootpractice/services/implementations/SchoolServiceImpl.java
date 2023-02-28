@@ -1,8 +1,11 @@
 package com.sda.study.springbootpractice.services.implementations;
 
+import com.sda.study.springbootpractice.exceptions.CourseNotFoundException;
 import com.sda.study.springbootpractice.exceptions.SchoolNotFoundException;
+import com.sda.study.springbootpractice.models.Course;
 import com.sda.study.springbootpractice.models.School;
 import com.sda.study.springbootpractice.repositories.SchoolRepository;
+import com.sda.study.springbootpractice.services.CourseService;
 import com.sda.study.springbootpractice.services.SchoolService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +25,9 @@ public class SchoolServiceImpl implements SchoolService {
     // @autowired - every time when using schoolRepository it will automatically find a way to make connection
     @Autowired
     private SchoolRepository schoolRepository;
+
+    @Autowired
+    private CourseService courseService;
 
     @Override
     public void createSchool(School school) {
@@ -62,17 +68,27 @@ public class SchoolServiceImpl implements SchoolService {
     }
 
     @Override
-    public void deleteSchoolById(Long id) throws SchoolNotFoundException {
+    public void deleteSchoolById(Long id) throws SchoolNotFoundException, CourseNotFoundException {
         School school = findSchoolById(id);
         // schoolRepository.delete(school);    // to delete the record completely from the repository
         school.setActive(false);
         schoolRepository.saveAndFlush(school);
+
+        // find all the course belong to the school and delete the respective courses
+        for (Course course : courseService.findAllCoursesBySchool(school)) {
+            courseService.deleteCourseById(course.getId());
+        }
     }
 
     @Override
-    public void restoreSchoolById(Long id) throws SchoolNotFoundException {
+    public void restoreSchoolById(Long id) throws SchoolNotFoundException, CourseNotFoundException {
         School school = findSchoolById(id);
         school.setActive(true);
         schoolRepository.saveAndFlush(school);
+
+        // find all the course belong to the school and delete the respective courses
+        for (Course course : courseService.findAllCoursesBySchool(school)) {
+            courseService.restoreCourseById(course.getId());
+        }
     }
 }
