@@ -18,6 +18,10 @@ import java.util.Optional;
 @Service
 @Transactional
 public class CourseServiceImpl implements CourseService {
+
+    public static void main(String[] args) {
+    }
+
     @Autowired
     private CourseRepository courseRepository;
 
