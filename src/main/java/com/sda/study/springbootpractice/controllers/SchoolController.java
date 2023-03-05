@@ -2,14 +2,12 @@ package com.sda.study.springbootpractice.controllers;
 
 import com.sda.study.springbootpractice.exceptions.CourseNotFoundException;
 import com.sda.study.springbootpractice.exceptions.SchoolNotFoundException;
+import com.sda.study.springbootpractice.models.School;
 import com.sda.study.springbootpractice.services.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -56,6 +54,49 @@ public class SchoolController {
             redirectAttributes.addFlashAttribute("messageType", "success");
             return "redirect:/school";
         } catch (SchoolNotFoundException | CourseNotFoundException e) {
+            return handleException(redirectAttributes, e);
+        }
+    }
+
+    @GetMapping("/create")
+    public String createSchool(Model model) {
+        model.addAttribute("school", new School());
+        return "school/create-school";
+    }
+
+    @PostMapping("/create")
+    public String addCreateSchool(@ModelAttribute("school") School school, RedirectAttributes redirectAttributes) {
+        try {
+            schoolService.createSchool(school);
+            redirectAttributes.addFlashAttribute("message", "School added successfully!");
+            redirectAttributes.addFlashAttribute("messageType", "success");
+            return "redirect:/school";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("message", e.getLocalizedMessage());
+            redirectAttributes.addFlashAttribute("messageType", "error");
+            return "redirect:/school/create";
+        }
+    }
+
+    // Updating existing school
+    @GetMapping("/update/{id}")
+    public String showSchoolUpdateForm(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
+        try {
+            model.addAttribute("school", schoolService.findSchoolById(id));
+            return "school/update-school";
+        } catch (SchoolNotFoundException e) {
+            return handleException(redirectAttributes, e);
+        }
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateSchool(@PathVariable Long id, @ModelAttribute("school") School school, RedirectAttributes redirectAttributes) {
+        try {
+            schoolService.updateSchool(id, school);
+            redirectAttributes.addFlashAttribute("message", String.format("School #%d updated successfully!", id));
+            redirectAttributes.addFlashAttribute("messageType", "success");
+            return "redirect:/school";
+        } catch (SchoolNotFoundException e) {
             return handleException(redirectAttributes, e);
         }
     }

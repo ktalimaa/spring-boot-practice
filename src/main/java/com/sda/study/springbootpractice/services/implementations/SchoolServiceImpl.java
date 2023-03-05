@@ -61,7 +61,7 @@ public class SchoolServiceImpl implements SchoolService {
     }
 
     @Override
-    public void updateSchool(School school) throws SchoolNotFoundException {
+    public void updateSchool(Long id, School school) throws SchoolNotFoundException {
         if (findSchoolById(school.getId()) != null) {
             schoolRepository.saveAndFlush(school);
         }
