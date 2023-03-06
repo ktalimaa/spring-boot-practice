@@ -46,10 +46,10 @@ public interface SchoolService {
     /**
      * To update an existing School
      *
-     * @param id
+     * @param school
      * @param school School
      */
-    void updateSchool(Long id, School school) throws SchoolNotFoundException;
+    void updateSchool(School school) throws SchoolNotFoundException;
 
     /**
      * To delete a School by ID

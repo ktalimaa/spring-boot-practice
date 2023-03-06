@@ -17,7 +17,6 @@
         <div class="alert alert-danger" role="alert" th:if="${messageType} == 'error'">
             <span th:text=" ${message}"></span>
         </div>
-
         <form action="#" th:action="@{/school}" method="post" th:object="${school}">
             <div class="input-group">
                 <span class="input-group-text">Name</span>
@@ -39,8 +38,6 @@
             <!-- button to cancel or go back from the process -->
             <a class="btn btn-outline-dark" href="/school" role="button">Cancel</a>
         </form>
-
-
     </div>
 </div>
 <div th:replace="fragments/script-fragment"></div>

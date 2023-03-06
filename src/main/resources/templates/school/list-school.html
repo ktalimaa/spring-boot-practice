@@ -26,7 +26,7 @@
         </div>
 
         <a class="btn btn-success" href="/school/create" role="button">Add school</a>
-        <br/>
+        <br></be><br/>
 
         <table class="table table-dark" th:if="${schools.size() > 0}">
             <!-- when is no data in table, the table will not be displayed at all, but its not good solution and user will be confused -->
@@ -48,6 +48,10 @@
                 <td th:text="${school.address}"></td>
                 <td th:text="${school.phone}"></td>
                 <td>
+                    <a class="btn btn-warning" role="button" th:href="@{/school/update/{id}(id=${school.id})}"
+                       th:if="${school.isActive()}">
+                        <i class="bi bi-pencil-fill"></i>
+                    </a>
                     <a class="btn btn-danger" role="button" th:href="@{/school/delete/{id}(id=${school.id})}"
                        th:if="${school.isActive()}">
                         <i class="bi bi-trash2-fill"></i>
@@ -62,9 +66,7 @@
         </table>
     </div>
 </div>
-
 <!-- Here will be replacing with script fragment -->
 <div th:replace="fragments/script-fragment"></div>
-
 </body>
 </html>
