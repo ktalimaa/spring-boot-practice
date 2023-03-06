@@ -26,7 +26,8 @@
             <label for="name">Address</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" readonly class="form-control-plaintext" id="active" th:value="${school.active} ? 'Yes' : 'No'">
+            <input type="text" readonly class="form-control-plaintext" id="active"
+                   th:value="${school.active} ? 'Yes' : 'No'">
             <label for="name">Active</label>
         </div>
         <a class="btn btn-outline-primary" href="/school" role="button">Back</a>

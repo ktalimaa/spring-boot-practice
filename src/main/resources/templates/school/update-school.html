@@ -12,10 +12,10 @@
     <div th:replace="fragments/navbar"></div>
     <div class="container">
         <h1 class="fw-bold">Update school</h1>
-        <a class="btn btn-primary" role="button" th:href="@{/school/create/{id}(id=${school.id})}"
-           th:if="${school.isActive()}">
-            <i class="bi bi-arrow-clockwise"></i>
-        </a>
+        <!--        <a class="btn btn-primary" role="button" th:href="@{/school/update/{id}(id=${school.id})}"-->
+        <!--           th:if="${school.isActive()}">-->
+        <!--            <i class="bi bi-arrow-clockwise"></i>-->
+        <!--        </a>-->
         <form method="POST" action="/school/update" th:object="${school}">
             <input type="hidden" th:field="*{id}"/>
             <div class="form-floating mb-3">

@@ -52,6 +52,14 @@
                        th:if="${!school.isActive()}">
                         <i class="bi bi-arrow-counterclockwise"></i>
                     </a>
+                    <a class="btn btn-primary" role="button" th:href="@{/school/create}"
+                       th:if="${school.isActive()}">
+                        <i class="bi bi-plus-circle"></i>
+                    </a>
+                    <a class="btn btn-primary" role="button" th:href="@{/school/update}"
+                       th:if="${school.isActive()}">
+                        <i class="bi bi-arrow-clockwise"></i>
+                    </a>
                 </td>
             </tr>
             </tbody>

@@ -12,10 +12,10 @@
     <div th:replace="fragments/navbar"></div>
     <div class="container">
         <h1 class="fw-bold">Create school</h1>
-        <a class="btn btn-primary" role="button" th:href="@{/school/create/{id}(id=${school.id})}"
-           th:if="${school.isActive()}">
-            <i class="bi bi-plus-circle"></i>
-        </a>
+        <!--        <a class="btn btn-primary" role="button" th:href="@{/school/create/{id}(id=${school.id})}"-->
+        <!--           th:if="${school.isActive()}">-->
+        <!--            <i class="bi bi-plus-circle"></i>-->
+        <!--        </a>-->
         <form action="" method="post">
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="name" name="name">
