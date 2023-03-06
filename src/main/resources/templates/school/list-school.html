@@ -24,6 +24,10 @@
         <div class="alert alert-info" role="alert" th:if="${schools.size() == 0}">
             No schools found!
         </div>
+
+        <a class="btn btn-success" href="/school/create" role="button">Add school</a>
+        <br/>
+
         <table class="table table-dark" th:if="${schools.size() > 0}">
             <!-- when is no data in table, the table will not be displayed at all, but its not good solution and user will be confused -->
             <thead>
@@ -51,14 +55,6 @@
                     <a class="btn btn-success" role="button" th:href="@{/school/restore/{id}(id=${school.id})}"
                        th:if="${!school.isActive()}">
                         <i class="bi bi-arrow-counterclockwise"></i>
-                    </a>
-                    <a class="btn btn-primary" role="button" th:href="@{/school/create}"
-                       th:if="${school.isActive()}">
-                        <i class="bi bi-plus-circle"></i>
-                    </a>
-                    <a class="btn btn-primary" role="button" th:href="@{/school/update}"
-                       th:if="${school.isActive()}">
-                        <i class="bi bi-arrow-clockwise"></i>
                     </a>
                 </td>
             </tr>
