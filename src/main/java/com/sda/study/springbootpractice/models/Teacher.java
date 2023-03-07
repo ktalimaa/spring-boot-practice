@@ -14,7 +14,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
-public class Teacher extends Auditable<String>  implements Serializable {
+public class Teacher extends Auditable<String> implements Serializable {
 //    ser means that you are able to pass object to string and string to object by using serializable method, and add serialVERSIONUID also
 
     private static final long serialVersionUID = 1L;

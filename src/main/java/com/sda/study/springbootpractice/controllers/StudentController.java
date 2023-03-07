@@ -2,14 +2,8 @@ package com.sda.study.springbootpractice.controllers;
 
 import com.sda.study.springbootpractice.exceptions.CourseNotFoundException;
 import com.sda.study.springbootpractice.exceptions.StudentNotFoundException;
-import com.sda.study.springbootpractice.exceptions.SchoolNotFoundException;
-import com.sda.study.springbootpractice.exceptions.StudentNotFoundException;
-import com.sda.study.springbootpractice.models.Course;
-import com.sda.study.springbootpractice.models.Student;
-import com.sda.study.springbootpractice.models.School;
 import com.sda.study.springbootpractice.models.Student;
 import com.sda.study.springbootpractice.services.CourseService;
-import com.sda.study.springbootpractice.services.StudentService;
 import com.sda.study.springbootpractice.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -18,7 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -64,24 +57,11 @@ public class StudentController {
         }
     }
 
-
-//    @PostMapping
-//    public ResponseEntity<?> createStudent(@RequestBody Student student) {
-//        try {
-//            Student searchStudent = studentService.findStudentByName(student.getName());
-//            throw new RuntimeException("Student already exists! Cannot create this student!");
-//        } catch (StudentNotFoundException e) {
-//            studentService.createStudent(student);
-//            return new ResponseEntity<>(HttpStatus.CREATED);
-//        }
-//    }
-
     @PostMapping("/update")
     public ResponseEntity<?> updateStudent(@RequestBody Student student) throws StudentNotFoundException {
         studentService.updateStudent(student);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 
     @GetMapping("/restore/{id}")
     public ResponseEntity<?> restoreStudent(@PathVariable Long id) throws StudentNotFoundException, StudentNotFoundException {

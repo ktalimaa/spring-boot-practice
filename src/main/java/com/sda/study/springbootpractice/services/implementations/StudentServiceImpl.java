@@ -28,7 +28,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void createStudent(Student student) throws CourseNotFoundException {
-        for(Course course: student.getCourses()) {
+        for (Course course : student.getCourses()) {
             courseService.findCourseById(course.getId());
         }
 
@@ -40,7 +40,7 @@ public class StudentServiceImpl implements StudentService {
     public Student findStudentById(Long id) throws StudentNotFoundException {
         Optional<Student> studentOptional = studentRepository.findById(id);
 
-        if(studentOptional.isEmpty()) {
+        if (studentOptional.isEmpty()) {
             throw new StudentNotFoundException(id);
         }
 
@@ -51,7 +51,7 @@ public class StudentServiceImpl implements StudentService {
     public Student findStudentByName(String name) throws StudentNotFoundException {
         Optional<Student> studentOptional = studentRepository.findByName(name);
 
-        if(studentOptional.isEmpty()) {
+        if (studentOptional.isEmpty()) {
             throw new StudentNotFoundException(name);
         }
 
@@ -65,7 +65,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void updateStudent(Student student) throws StudentNotFoundException {
-        if(findStudentById(student.getId()) != null) {
+        if (findStudentById(student.getId()) != null) {
             studentRepository.saveAndFlush(student);
         }
     }

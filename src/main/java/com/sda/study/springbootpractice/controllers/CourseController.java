@@ -60,17 +60,6 @@ public class CourseController {
         }
     }
 
-//    @PostMapping
-//    public ResponseEntity<?> createCourse(@RequestBody Course course) {
-//        try {
-//            Course searchCourse = courseService.findCourseByName(course.getName());
-//            throw new RuntimeException("Course already exists! Cannot create this course!");
-//        } catch (CourseNotFoundException e) {
-//            courseService.createCourse(course);
-//            return new ResponseEntity<>(HttpStatus.CREATED);
-//        }
-//    }
-
     @PostMapping("/update")
     public ResponseEntity<?> updateCourse(@RequestBody Course course) throws CourseNotFoundException {
         courseService.updateCourse(course);
